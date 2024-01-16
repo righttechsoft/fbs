@@ -127,7 +127,7 @@ class FacebookScraper:
 
             post = {"original_request_url": post_url, "post_url": url}
             logger.debug(f"Requesting page from: {url}")
-            response = self.get(url, **options)
+            response = self.get(url)
             options["response_url"] = response.url
             photo_post = False
             if "/stories/" in url or "/story/" in url:
@@ -860,9 +860,6 @@ class FacebookScraper:
 
     def get(self, url, **kwargs):
         try:
-            time_sleep = kwargs.get("sleep")
-            if time_sleep:
-                kwargs.pop("sleep")
             self.request_count += 1
             url = str(url)
             if not url.startswith("http"):
@@ -946,8 +943,6 @@ class FacebookScraper:
                     raise exceptions.LoginRequired(
                         "A login (cookies) is required to see this page"
                     )
-            if time_sleep:
-                time.sleep(time_sleep)
             return response
         except RequestException as ex:
             logger.exception("Exception while requesting URL: %s\nException: %r", url, ex)
