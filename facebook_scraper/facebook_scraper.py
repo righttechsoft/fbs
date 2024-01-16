@@ -860,7 +860,7 @@ class FacebookScraper:
 
     def get(self, url, **kwargs):
         try:
-            time_sleep = kwargs.get("sleep")
+            time_sleep = kwargs.pop("sleep")
             self.request_count += 1
             url = str(url)
             if not url.startswith("http"):
