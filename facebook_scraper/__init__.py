@@ -8,7 +8,7 @@ import warnings
 import pickle
 from typing import Any, Dict, Iterator, Optional, Set, Union
 
-from requests.cookies import cookiejar_from_dict
+from requests.cookies import cookiejar_from_dict, RequestsCookieJar
 
 from .constants import DEFAULT_REQUESTS_TIMEOUT, DEFAULT_COOKIES_FILE_PATH
 from .facebook_scraper import FacebookScraper
