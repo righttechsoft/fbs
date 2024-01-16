@@ -43,6 +43,12 @@ def set_cookies(cookies):
                 raise exceptions.InvalidCookies(f"Cookies are in an invalid format: {e}")
     elif isinstance(cookies, dict):
         cookies = cookiejar_from_dict(cookies)
+    elif isinstance(cookies, list):
+        cookiejar = RequestsCookieJar()
+        for item in [{c["name"]: c["value"]} for c in cookies]:
+            c_item = cookiejar_from_dict(item)
+            cookiejar.update(c_item)
+        cookies = cookiejar
     if cookies is not None:
         cookie_names = [c.name for c in cookies]
         missing_cookies = [c for c in ['c_user', 'xs'] if c not in cookie_names]
