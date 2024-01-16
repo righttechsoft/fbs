@@ -128,6 +128,7 @@ class FacebookScraper:
             post = {"original_request_url": post_url, "post_url": url}
             logger.debug(f"Requesting page from: {url}")
             response = self.get(url)
+            time.sleep(5)
             options["response_url"] = response.url
             photo_post = False
             if "/stories/" in url or "/story/" in url:
@@ -1117,6 +1118,7 @@ class FacebookScraper:
                 logger.debug("Extracting posts from page %s", i)
                 for post_element in page:
                     post = extract_post_fn(post_element, options=options, request_fn=self.get)
+                    time.sleep(5)
                     if remove_source:
                         post.pop('source', None)
                     yield post
