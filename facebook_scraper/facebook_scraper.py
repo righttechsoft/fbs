@@ -127,7 +127,7 @@ class FacebookScraper:
 
             post = {"original_request_url": post_url, "post_url": url}
             logger.debug(f"Requesting page from: {url}")
-            response = self.get(url, options)
+            response = self.get(url, **options)
             options["response_url"] = response.url
             photo_post = False
             if "/stories/" in url or "/story/" in url:
