@@ -1,5 +1,6 @@
 import itertools
 import logging
+import time
 from urllib.parse import urljoin
 import warnings
 import re
@@ -859,6 +860,7 @@ class FacebookScraper:
 
     def get(self, url, **kwargs):
         try:
+            time_sleep = kwargs.get("sleep")
             self.request_count += 1
             url = str(url)
             if not url.startswith("http"):
@@ -942,6 +944,8 @@ class FacebookScraper:
                     raise exceptions.LoginRequired(
                         "A login (cookies) is required to see this page"
                     )
+            if time_sleep:
+                time.sleep(time_sleep)
             return response
         except RequestException as ex:
             logger.exception("Exception while requesting URL: %s\nException: %r", url, ex)

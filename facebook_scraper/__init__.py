@@ -209,11 +209,11 @@ def get_posts(
     options.setdefault('account', account)
 
     # TODO: Add a better throttling mechanism
-    if 'sleep' in kwargs:
-        warnings.warn(
-            "The sleep parameter has been removed, it won't have any effect.", stacklevel=2
-        )
-        kwargs.pop('sleep')
+    # if 'sleep' in kwargs:
+    #     warnings.warn(
+    #         "The sleep parameter has been removed, it won't have any effect.", stacklevel=2
+    #     )
+    #     kwargs.pop('sleep')
 
     # TODO: Deprecate `pages` in favor of `page_limit` since it is less confusing
     if 'pages' in kwargs:
